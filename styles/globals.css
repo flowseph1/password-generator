@@ -1,26 +1,45 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .active {
+        @apply bg-red-500 text-black !border-red-500;
+    }
+
+    .disabled {
+        @apply !bg-zinc-700 !text-zinc-900 hover:!shadow-none;
+    }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer base {
+    html {
+        font-family: 'Roboto Mono', monospace;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    /* Special styling for WebKit/Blink */
+    input[type='range']::-webkit-slider-thumb {
+        width: 20px;
+        height: 20px;
+        margin-top: -5px;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        border-radius: 50%;
+        position: relative;
+        z-index: 99;
+        @apply bg-white;
+    }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+    input[type='range']::-webkit-slider-thumb:hover {
+        box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.5), 0 0 0 5px rgba(239 68 68 0.1);
+    }
+
+    /* Special styling for WebKit/Blink */
+    input[type='range']::-webkit-slider-runnable-track {
+        width: 24px;
+        @apply h-2;
+        -webkit-appearance: none;
+        appearance: none;
+    }
 }
